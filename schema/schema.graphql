@@ -1,0 +1,25 @@
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
+
+type Subscription {
+    inbox(to: String): Page
+    @aws_subscribe(mutations: ["message"])
+}
+
+type Mutation {
+    message(body: String!, to: String!): Page!
+}
+
+type Message {
+    from: String!
+    to: String!
+    body: String!
+    sentAt: String!
+}
+
+type Query {
+    me: String
+}
